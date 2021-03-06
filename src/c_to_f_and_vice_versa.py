@@ -12,7 +12,7 @@ def errormessage_function():
 deadend = False
 while deadend == False:
     try:
-        user_input = input("To convert from Celsius to Fahrenheit input in 0, for the other way around input in 1:")
+        user_input = input("To convert from Celsius to Fahrenheit input in 0, for the other way around input in 1: ")
         try: 
             float(user_input)
         except ValueError:
