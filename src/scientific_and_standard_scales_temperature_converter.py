@@ -1,4 +1,16 @@
-# By Faycal Kilali 07-Mar-21, this project is covered by the GNU General Public License V3.0.
+#   License and Author
+__author__ = "Faycal Kilali"
+__copyright__ = "Copyright (C) 2021 Faycal Kilali"
+__license__ = "\nGNU GENERAL PUBLIC LICENSE"
+__license_version__ = "3.0"
+
+#   Purpose and version of program
+purpose = "This program converts to multiple different temperature scales using an input from any of the temperature scales."
+__version__ = "\nProgram Version: 1.1"
+
+#   Display purpose and version, license and version of license.
+print(purpose, __version__)
+print(__copyright__, __license__, __license_version__)
 
 def errormessage_function():
     print("Please follow the directions in the program")
@@ -45,8 +57,6 @@ class Temp_conversion:
                 return  celsius * 4/5
             elif convert == "Rømer":
                 return celsius * 21/40 + 7.5
-            elif convert == "Celsius":
-                return user_input_pt2_int
             else:
                 pass
             
@@ -63,7 +73,7 @@ abs_Rømer = -135.90
 deadend = False
 while deadend == False:
     try:
-        user_input = input("Input the unit of measure you would like to convert from:\n 0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Réaumur, 7 for Rømer: ")
+        user_input = input("Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Réaumur, 7 for Rømer: ")
         try: 
             float(user_input)
         except ValueError:
