@@ -22,7 +22,7 @@ git clone https://github.com/faycalki/Multiple_temperature_scales_converter.git
 
 ## Features
 
-* Clutter-free conversion multiple temperature scales.
+* Clutter-free conversion between multiple temperature scales.
 * Minimal dependencies (no external packages or modules loaded).
 * Can be implemented as a fully modular program with minimal editing.
 

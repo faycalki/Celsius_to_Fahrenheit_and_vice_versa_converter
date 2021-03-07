@@ -24,7 +24,7 @@ class Temp_conversion:
         self.temperature = temperature
         
     def conversion_to_celsius(self, choice):
-        if  choice == "Fahrenheit":
+        if   choice == "Fahrenheit":
                 celsius = (self.temperature - 32) * 5 / 9
         elif choice == "Kelvin":
                 celsius = (self.temperature - 273.15)
@@ -39,7 +39,7 @@ class Temp_conversion:
         elif choice == "Rømer":
                 celsius =  (self.temperature - 7.5) * 40/21
         else:
-                celsius = user_input_pt2_int
+                celsius = user_input_pt2_float
         return celsius            
     
     def conversion_from_celsius(self, celsius, convert):
@@ -83,26 +83,26 @@ while deadend == False:
             errormessage_function()
             continue
         else:
-            user_input_int = int(user_input)
-            if user_input_int > 7 or user_input_int < 0:
+            user_input_float = float(user_input)
+            if user_input_float not in range(0,8):
                 errormessage_function()
                 continue
             else:
-                if user_input_int == 0:
+                if user_input_float == 0:
                     choice = "Celsius"
-                elif user_input_int == 1:
+                elif user_input_float == 1:
                     choice = "Fahrenheit"
-                elif user_input_int == 2:
+                elif user_input_float == 2:
                     choice = "Kelvin"
-                elif user_input_int == 3:
+                elif user_input_float == 3:
                     choice = "Rankine"
-                elif user_input_int == 4:
+                elif user_input_float == 4:
                     choice = "Delisle"
-                elif user_input_int == 5:
+                elif user_input_float == 5:
                     choice = "Newton"
-                elif user_input_int == 6:
+                elif user_input_float == 6:
                     choice = "Réaumur"
-                elif user_input_int == 7:
+                elif user_input_float == 7:
                     choice = "Rømer"
                     
                 user_input_pt2 = input("Plug in the %s temperature to convert it: " % choice)
@@ -112,35 +112,35 @@ while deadend == False:
                 except ValueError:
                     errormessage_function()
                     continue
-                user_input_pt2_int = int(user_input_pt2)
+                user_input_pt2_float = float(user_input_pt2)
                 try: 
-                    if choice == "Celsius" and user_input_pt2_int < abs_celsius:
+                    if choice == "Celsius" and user_input_pt2_float < abs_celsius:
                         abs_error()
                         continue
-                    elif choice == "Fahrenheit" and user_input_pt2_int < abs_fahrenheit:
+                    elif choice == "Fahrenheit" and user_input_pt2_float < abs_fahrenheit:
                         abs_error()
                         continue
-                    elif choice == "Kelvin" and user_input_pt2_int < abs_kelvin:
+                    elif choice == "Kelvin" and user_input_pt2_float < abs_kelvin:
                         abs_error()
                         continue
-                    elif choice == "Rankine" and user_input_pt2_int < abs_rankine:
+                    elif choice == "Rankine" and user_input_pt2_float < abs_rankine:
                         abs_error()
                         continue
-                    elif choice == "Delisle" and user_input_pt2_int < abs_delisle:
+                    elif choice == "Delisle" and user_input_pt2_float < abs_delisle:
                         abs_error()
                         continue
-                    elif choice == "Newton" and user_input_pt2_int < abs_newton:
+                    elif choice == "Newton" and user_input_pt2_float < abs_newton:
                         abs_error()
                         continue
-                    elif choice == "Réaumur" and user_input_pt2_int < abs_Réaumur:
+                    elif choice == "Réaumur" and user_input_pt2_float < abs_Réaumur:
                         abs_error()
                         continue
-                    elif choice == "Rømer" and user_input_pt2_int < abs_Rømer:
+                    elif choice == "Rømer" and user_input_pt2_float < abs_Rømer:
                         abs_error()
                         continue
                     else:
                         Temp_conversionObject = Temp_conversion() # Assigns the object to Temp_conversionObject
-                        Temp_conversionObject.temperature = user_input_pt2_int  # Assigns the integer value of user_input_pt2_int as an attribute to the object's temperature property
+                        Temp_conversionObject.temperature = user_input_pt2_float  # Assigns the integer value of user_input_pt2_float as an attribute to the object's temperature property
                         #The code below prints all the temperature conversions, utilizing formulas based upon the user's choice of temperature (that they input)
                         celsius = Temp_conversionObject.conversion_to_celsius(choice)
                         print("Celsius: %.2f°C" % celsius)
