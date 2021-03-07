@@ -9,7 +9,7 @@ A converter between any of the scales: Celsius, Fahrenheit, Kelvin, Rankine, Del
 Python Interpreter 3+ is required in order to compile the code, you may build this into an executable through other means if you wish. Standard compilation is all that is needed.
 
 ```shell
-python c_to_f_and_vice_versa.py
+python scientific_and_standard_scales_temperature_converter.py
 ```
 
 Once the code is executed, you will be provided with a prompt asking you what scale you want to convert from, then another prompt asking you for the temperature to convert. The output will be all the temperature scales supported.
