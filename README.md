@@ -1,4 +1,4 @@
-![Logo of the project](https://i.imgur.com/39uBMF1.png)
+![Logo of the project](https://i.imgur.com/zjIVVtf.png)
 
 # Multiple temperatures converter
 

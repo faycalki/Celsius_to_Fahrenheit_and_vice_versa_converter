@@ -12,22 +12,22 @@ class Temp_conversion:
         self.temperature = temperature
         
     def conversion_to_celsius(self, choice):
-        if choice == "Fahrenheit":
-            celsius = (self.temperature - 32) * 5 / 9
+        if  choice == "Fahrenheit":
+                celsius = (self.temperature - 32) * 5 / 9
         elif choice == "Kelvin":
-            celsius = (self.temperature - 273.15)
+                celsius = (self.temperature - 273.15)
         elif choice == "Rankine":
-            celsius = (self.temperature - 491.67) * 5 / 9
+                celsius = (self.temperature - 491.67) * 5 / 9
         elif choice == "Delisle":
-            celsius =  (100 - self.temperature) * 2/3 
+                celsius =  (100 - self.temperature) * 2/3 
         elif choice == "Newton":
-            celsius = (self.temperature * 100 / 33)
+                celsius = (self.temperature * 100 / 33)
         elif choice == "Réaumur":
-            celsius =  (self.temperature) * 5 / 4
+                celsius =  (self.temperature) * 5 / 4
         elif choice == "Rømer":
-            celsius =  (self.temperature - 7.5) * 40/21
+                celsius =  (self.temperature - 7.5) * 40/21
         else:
-            celsius = user_input_pt2_int
+                celsius = user_input_pt2_int
         return celsius            
     
     def conversion_from_celsius(self, celsius, convert):
@@ -45,9 +45,11 @@ class Temp_conversion:
                 return  celsius * 4/5
             elif convert == "Rømer":
                 return celsius * 21/40 + 7.5
-            else:
+            elif convert == "Celsius":
                 return user_input_pt2_int
- 
+            else:
+                pass
+            
 # Scientific absolute zero temperatures for the different temperature scales (for convenience)
 abs_celsius = -273.15
 abs_kelvin = 0
@@ -131,7 +133,7 @@ while deadend == False:
                         Temp_conversionObject.temperature = user_input_pt2_int  # Assigns the integer value of user_input_pt2_int as an attribute to the object's temperature property
                         #The code below prints all the temperature conversions, utilizing formulas based upon the user's choice of temperature (that they input)
                         celsius = Temp_conversionObject.conversion_to_celsius(choice)
-                        print("Celsius: %.2f°C" % Temp_conversionObject.conversion_from_celsius(celsius, "placeholder"))
+                        print("Celsius: %.2f°C" % celsius)
                         print("Fahrenheit: %.2f°F" % Temp_conversionObject.conversion_from_celsius(celsius, "Fahrenheit"))
                         print("Kelvin: %.2fK" % Temp_conversionObject.conversion_from_celsius(celsius, "Kelvin"))
                         print("Rankine: %.2f°R" % Temp_conversionObject.conversion_from_celsius(celsius, "Rankine"))
