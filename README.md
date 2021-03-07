@@ -1,8 +1,8 @@
 ![Logo of the project](https://i.imgur.com/sLTBepe.png)
 
-# Celsius to Fahrenheit (and vice versa) converter
+# Multiple temperatures converter
 
-A simple converter between Celsius and Fahrenreit built in Python 3+
+A converter between any of the scales: Celsius, Fahrenheit, Kelvin, Rankine, Delisle, Newton, Réaumur, Rømer from any direction. Built in Python 3+
 
 ## Installing / Getting started
 
@@ -12,7 +12,7 @@ Python Interpreter 3+ is required in order to compile the code, you may build th
 python c_to_f_and_vice_versa.py
 ```
 
-Once the code is executed, you will be provided with a prompt asking you whether you want to convert from Celsius to Fahrenheit or Fahrenheit to Celsius, then another prompt asking you for the temperature to convert.
+Once the code is executed, you will be provided with a prompt asking you what scale you want to convert from, then another prompt asking you for the temperature to convert. The output will be all the temperature scales supported.
 
 ## Developing
 
@@ -22,7 +22,7 @@ git clone https://github.com/faycalki/Celsius_to_Fahrenheit_and_vice_versa.git
 
 ## Features
 
-* Clutter-free conversion between Fahrenheit and Celsius
+* Clutter-free conversion multiple temperature scales.
 * Minimal dependencies (no external packages or modules loaded).
 * Can be implemented as a fully modular program with minimal editing.
 
