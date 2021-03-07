@@ -17,7 +17,7 @@ Once the code is executed, you will be provided with a prompt asking you what sc
 ## Developing
 
 ```shell
-git clone https://github.com/faycalki/Celsius_to_Fahrenheit_and_vice_versa.git
+git clone https://github.com/faycalki/Multiple_temperature_scales_converter.git
 ```
 
 ## Features
@@ -33,8 +33,8 @@ branch. Pull requests are warmly welcome.
 
 ## Links
 
-- Repository: https://github.com/faycalki/Celsius_to_Fahrenheit_and_vice_versa/
-- Issue tracker: https://github.com/faycalki/Celsius_to_Fahrenheit_and_vice_versa/issues/
+- Repository: https://github.com/faycalki/Multiple_temperature_scales_converter/
+- Issue tracker: https://github.com/faycalki/Multiple_temperature_scales_converter/issues/
   - In case of sensitive bugs like security vulnerabilities, please contact
     icechillgaming@gmail.com directly instead of using the issue tracker. I greatly appreciate any efforts to improve the security of my projects.
   - My other projects, feel free to check them out: https://github.com/faycalki/
