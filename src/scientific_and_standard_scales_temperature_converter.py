@@ -27,38 +27,40 @@ class Temp_conversion:
         if   choice == "Fahrenheit":
                 celsius = (self.temperature - 32) * 5 / 9
         elif choice == "Kelvin":
-                celsius = (self.temperature - 273.15)
+                celsius = self.temperature - 273.15
         elif choice == "Rankine":
                 celsius = (self.temperature - 491.67) * 5 / 9
         elif choice == "Delisle":
-                celsius =  (100 - self.temperature) * 2/3 
+                celsius =  100 - self.temperature * 2/3 
         elif choice == "Newton":
-                celsius = (self.temperature * 100 / 33)
-        elif choice == "Réaumur":
-                celsius =  (self.temperature) * 5 / 4
-        elif choice == "Rømer":
+                celsius = self.temperature * 100 / 33
+        elif choice == "Reaumur":
+                celsius =  self.temperature * 5 / 4
+        elif choice == "Romer":
                 celsius =  (self.temperature - 7.5) * 40/21
-        else:
-                celsius = user_input_pt2_float
-        return celsius            
+        elif choice == "Celsius":
+                celsius = (self.temperature) # When Celsius is standardized unit, switch this to kelvin later honestly
+        else: 
+            print("Conversion failed, argument match not found")
+        return celsius # Return Kelvin later once I make Kelvin the standard unit of measure
     
     def conversion_from_celsius(self, celsius, convert):
             if convert == "Fahrenheit":
-                return (celsius * 1.8) + 32
+                return celsius * 9/5 + 32
             elif convert == "Kelvin":
-                return (celsius) + 273.15
+                return celsius + 273.15
             elif convert == "Rankine":
                 return (celsius + 273.15) * 9/5
             elif convert == "Delisle":
                 return (100 - celsius) * 3/2
             elif convert == "Newton":
                 return celsius * 33/100
-            elif convert == "Réaumur":
+            elif convert == "Reaumur":
                 return  celsius * 4/5
-            elif convert == "Rømer":
+            elif convert == "Romer":
                 return celsius * 21/40 + 7.5
             else:
-                pass
+                print("Error encountered, convert argument match not found")
             
 # Scientific absolute zero temperatures for the different temperature scales (for convenience)
 abs_celsius = -273.15
@@ -67,13 +69,13 @@ abs_fahrenheit = -459.67
 abs_rankine = 0
 abs_delisle = 559.73
 abs_newton = -90.14
-abs_Réaumur = -218.52
-abs_Rømer = -135.90
+abs_Reaumur = -218.52
+abs_Romer = -135.90
 
 deadend = False
 while deadend == False:
     try:
-        user_input = input("Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Réaumur, 7 for Rømer: ")
+        user_input = input("Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Reaumur, 7 for Romer: ")
         try: 
             float(user_input)
         except ValueError:
@@ -101,9 +103,9 @@ while deadend == False:
                 elif user_input_float == 5:
                     choice = "Newton"
                 elif user_input_float == 6:
-                    choice = "Réaumur"
+                    choice = "Reaumur"
                 elif user_input_float == 7:
-                    choice = "Rømer"
+                    choice = "Romer"
                     
                 user_input_pt2 = input("Plug in the %s temperature to convert it: " % choice)
                 
@@ -126,16 +128,16 @@ while deadend == False:
                     elif choice == "Rankine" and user_input_pt2_float < abs_rankine:
                         abs_error()
                         continue
-                    elif choice == "Delisle" and user_input_pt2_float < abs_delisle:
+                    elif choice == "Delisle" and user_input_pt2_float > abs_delisle:
                         abs_error()
                         continue
                     elif choice == "Newton" and user_input_pt2_float < abs_newton:
                         abs_error()
                         continue
-                    elif choice == "Réaumur" and user_input_pt2_float < abs_Réaumur:
+                    elif choice == "Reaumur" and user_input_pt2_float < abs_Reaumur:
                         abs_error()
                         continue
-                    elif choice == "Rømer" and user_input_pt2_float < abs_Rømer:
+                    elif choice == "Romer" and user_input_pt2_float < abs_Romer:
                         abs_error()
                         continue
                     else:
@@ -149,8 +151,8 @@ while deadend == False:
                         print("Rankine: %.2f°R" % Temp_conversionObject.conversion_from_celsius(celsius, "Rankine"))
                         print("Delisle: %.2f°De" % Temp_conversionObject.conversion_from_celsius(celsius, "Delisle"))
                         print("Newton: %.2f°N" % Temp_conversionObject.conversion_from_celsius(celsius, "Newton"))
-                        print("Réaumur: %.2f°Ré" % Temp_conversionObject.conversion_from_celsius(celsius, "Réaumur"))
-                        print("Rømer: %.2f°Rø" % Temp_conversionObject.conversion_from_celsius(celsius, "Rømer"))
+                        print("Reaumur: %.2f°Ré" % Temp_conversionObject.conversion_from_celsius(celsius, "Reaumur"))
+                        print("Romer: %.2f°Rø" % Temp_conversionObject.conversion_from_celsius(celsius, "Romer"))
                 except EOFError as e:
                     print(e)
                     deadend = True
