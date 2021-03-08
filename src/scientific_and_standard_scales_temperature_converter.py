@@ -11,6 +11,10 @@ __version__ = "Program Version: 1.2\n"
 #   Exit method
 __exit_instructions__ = "If you wish to quit the program, input q then hit enter."
 
+def quit_program():
+    print("Quit input received, quitting program...")
+    exit()
+
 #   Display purpose and version, license and version of license.
 print(purpose, __version__)
 print(__copyright__, __license__, __license_version__, __exit_instructions__)
@@ -74,7 +78,7 @@ while deadend == False:
         "Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Reaumur, 7 for Romer: "
     )
     if user_input == "q":
-        exit()
+        quit_program()
     try:
         float(user_input)
     except ValueError:
@@ -104,7 +108,7 @@ while deadend == False:
                 "Plug in the %s temperature to convert it: " % choice
             )
             if user_input_pt2 == "q":
-                exit()
+                quit_program()
             try:
                 float(user_input_pt2)
             except ValueError:
