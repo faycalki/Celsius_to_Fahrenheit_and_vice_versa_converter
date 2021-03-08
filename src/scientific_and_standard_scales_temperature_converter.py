@@ -1,67 +1,63 @@
 #   License and Author
 __author__ = "Faycal Kilali"
-__copyright__ = "Copyright (C) 2021 Faycal Kilali"
-__license__ = "\nGNU GENERAL PUBLIC LICENSE"
-__license_version__ = "3.0"
+__copyright__ = "Copyright (C) 2021 Faycal Kilali\n"
+__license__ = "GNU GENERAL PUBLIC LICENSE"
+__license_version__ = "3.0\n"
 
 #   Purpose and version of program
-purpose = "This program converts to multiple different temperature scales using an input from any of the temperature scales."
-__version__ = "\nProgram Version: 1.1"
+purpose = "This program converts to multiple different temperature scales using an input from any of the temperature scales.\n"
+__version__ = "Program Version: 1.2\n"
+
+#   Exit method
+__exit_instructions__ = "If you wish to quit the program, input q then hit enter."
 
 #   Display purpose and version, license and version of license.
 print(purpose, __version__)
-print(__copyright__, __license__, __license_version__)
+print(__copyright__, __license__, __license_version__, __exit_instructions__)
 
-def errormessage_function():
-    print("Please follow the directions in the program")
-    
-def abs_error():
-    print("Your input temperature is below the absolute zero of %s by the Law of Thermodynamics, try plugging in a realistic temperature." % choice)
-    
+
+def DisplayError(ErrorNumber):
+    if ErrorNumber == 0:
+        print("Please follow the directions in the program")
+    elif ErrorNumber == 1:
+        print(
+            "Your input temperature is below the absolute zero of %s by the Law of Thermodynamics, try plugging in a realistic temperature."
+            % choice
+        )
+    else:
+        pass
+
+
 class Temp_conversion:
-    
-    def __init__(self, temperature = 0):
+    def __init__(self, temperature=0):
         self.temperature = temperature
-        
-    def conversion_to_celsius(self, choice):
-        if   choice == "Fahrenheit":
-                celsius = (self.temperature - 32) * 5 / 9
-        elif choice == "Kelvin":
-                celsius = self.temperature - 273.15
-        elif choice == "Rankine":
-                celsius = (self.temperature - 491.67) * 5 / 9
-        elif choice == "Delisle":
-                celsius =  100 - self.temperature * 2/3 
-        elif choice == "Newton":
-                celsius = self.temperature * 100 / 33
-        elif choice == "Reaumur":
-                celsius =  self.temperature * 5 / 4
-        elif choice == "Romer":
-                celsius =  (self.temperature - 7.5) * 40/21
-        elif choice == "Celsius":
-                celsius = (self.temperature) # When Celsius is standardized unit, switch this to kelvin later honestly
-        else: 
-            print("Conversion failed, argument match not found")
-        return celsius # Return Kelvin later once I make Kelvin the standard unit of measure
-    
-    def conversion_from_celsius(self, celsius, convert):
-            if convert == "Fahrenheit":
-                return celsius * 9/5 + 32
-            elif convert == "Kelvin":
-                return celsius + 273.15
-            elif convert == "Rankine":
-                return (celsius + 273.15) * 9/5
-            elif convert == "Delisle":
-                return (100 - celsius) * 3/2
-            elif convert == "Newton":
-                return celsius * 33/100
-            elif convert == "Reaumur":
-                return  celsius * 4/5
-            elif convert == "Romer":
-                return celsius * 21/40 + 7.5
-            else:
-                print("Error encountered, convert argument match not found")
-            
+
+    def to_kelvin(self, choice):
+        switcher_to_kelvin = {
+            "Celsius": self.temperature + 273.15,
+            "Fahrenheit": (self.temperature + 459.67) * 5 / 9,
+            "Kelvin": self.temperature,
+            "Rankine": self.temperature * 5 / 9,
+            "Delisle": 373.15 - self.temperature * 2 / 3,
+            "Newton": self.temperature * 100 / 33 + 273.15,
+            "Reaumur": self.temperature * 5 / 4 + 273.15,
+            "Romer": (self.temperature - 7.5) * 40 / 21 + 273.15,
+        }
+        return switcher_to_kelvin.get(choice, "Invalid temperature scale")
+
+    def from_kelvin(self, kelvin, convert):
+        switcher_from_kelvin = {
+            "Celsius": kelvin - 273.15,
+            "Fahrenheit": kelvin * 9 / 5 - 459.67,
+            "Rankine": kelvin * 9 / 5,
+            "Delisle": (373.15 - kelvin) * 3 / 2,
+            "Newton": (kelvin - 273.15) * 33 / 100,
+            "Reaumur": (kelvin - 273.15) * 4 / 5,
+            "Romer": (kelvin - 273.15) * 21 / 40 + 7.5,
+        }
+        return switcher_from_kelvin.get(convert, "Invalid temperature input")
+
+
 # Scientific absolute zero temperatures for the different temperature scales (for convenience)
 abs_celsius = -273.15
 abs_kelvin = 0
@@ -74,88 +70,109 @@ abs_Romer = -135.90
 
 deadend = False
 while deadend == False:
+    user_input = input(
+        "Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Reaumur, 7 for Romer: "
+    )
+    if user_input == "q":
+        exit()
     try:
-        user_input = input("Input the unit of measure you would like to convert from.\n0 for Celsius, 1 for Fahrenheit, 2 for Kelvin, 3 for Rankine, 4 for Delisle, 5 for Newton, 6 for Reaumur, 7 for Romer: ")
-        try: 
-            float(user_input)
-        except ValueError:
-            errormessage_function()
-            continue
-        if len(user_input) == 0:
-            errormessage_function()
+        float(user_input)
+    except ValueError:
+        DisplayError(0)
+        continue
+    if len(user_input) == 0:
+        DisplayError(0)
+        continue
+    else:
+        user_input_float = float(user_input)
+        if user_input_float not in range(0, 8):
+            DisplayError(0)
             continue
         else:
-            user_input_float = float(user_input)
-            if user_input_float not in range(0,8):
-                errormessage_function()
+            switcher = {
+                0: "Celsius",
+                1: "Fahrenheit",
+                2: "Kelvin",
+                3: "Rankine",
+                4: "Delisle",
+                5: "Newton",
+                6: "Reamur",
+                7: "Romer",
+            }
+            choice = switcher.get(user_input_float)
+            user_input_pt2 = input(
+                "Plug in the %s temperature to convert it: " % choice
+            )
+            if user_input_pt2 == "q":
+                exit()
+            try:
+                float(user_input_pt2)
+            except ValueError:
+                DisplayError(0)
+                continue
+            user_input_pt2_float = float(user_input_pt2)
+            if choice == "Celsius" and user_input_pt2_float < abs_celsius:
+                DisplayError(1)
+                continue
+            elif choice == "Fahrenheit" and user_input_pt2_float < abs_fahrenheit:
+                DisplayError(1)
+                continue
+            elif choice == "Kelvin" and user_input_pt2_float < abs_kelvin:
+                DisplayError(1)
+                continue
+            elif choice == "Rankine" and user_input_pt2_float < abs_rankine:
+                DisplayError(1)
+                continue
+            elif choice == "Delisle" and user_input_pt2_float > abs_delisle:
+                DisplayError(1)
+                continue
+            elif choice == "Newton" and user_input_pt2_float < abs_newton:
+                DisplayError(1)
+                continue
+            elif choice == "Reaumur" and user_input_pt2_float < abs_Reaumur:
+                DisplayError(1)
+                continue
+            elif choice == "Romer" and user_input_pt2_float < abs_Romer:
+                DisplayError(1)
                 continue
             else:
-                if user_input_float == 0:
-                    choice = "Celsius"
-                elif user_input_float == 1:
-                    choice = "Fahrenheit"
-                elif user_input_float == 2:
-                    choice = "Kelvin"
-                elif user_input_float == 3:
-                    choice = "Rankine"
-                elif user_input_float == 4:
-                    choice = "Delisle"
-                elif user_input_float == 5:
-                    choice = "Newton"
-                elif user_input_float == 6:
-                    choice = "Reaumur"
-                elif user_input_float == 7:
-                    choice = "Romer"
-                    
-                user_input_pt2 = input("Plug in the %s temperature to convert it: " % choice)
-                
-                try:
-                    float(user_input_pt2)
-                except ValueError:
-                    errormessage_function()
-                    continue
-                user_input_pt2_float = float(user_input_pt2)
-                try: 
-                    if choice == "Celsius" and user_input_pt2_float < abs_celsius:
-                        abs_error()
-                        continue
-                    elif choice == "Fahrenheit" and user_input_pt2_float < abs_fahrenheit:
-                        abs_error()
-                        continue
-                    elif choice == "Kelvin" and user_input_pt2_float < abs_kelvin:
-                        abs_error()
-                        continue
-                    elif choice == "Rankine" and user_input_pt2_float < abs_rankine:
-                        abs_error()
-                        continue
-                    elif choice == "Delisle" and user_input_pt2_float > abs_delisle:
-                        abs_error()
-                        continue
-                    elif choice == "Newton" and user_input_pt2_float < abs_newton:
-                        abs_error()
-                        continue
-                    elif choice == "Reaumur" and user_input_pt2_float < abs_Reaumur:
-                        abs_error()
-                        continue
-                    elif choice == "Romer" and user_input_pt2_float < abs_Romer:
-                        abs_error()
-                        continue
-                    else:
-                        Temp_conversionObject = Temp_conversion() # Assigns the object to Temp_conversionObject
-                        Temp_conversionObject.temperature = user_input_pt2_float  # Assigns the integer value of user_input_pt2_float as an attribute to the object's temperature property
-                        #The code below prints all the temperature conversions, utilizing formulas based upon the user's choice of temperature (that they input)
-                        celsius = Temp_conversionObject.conversion_to_celsius(choice)
-                        print("Celsius: %.2f°C" % celsius)
-                        print("Fahrenheit: %.2f°F" % Temp_conversionObject.conversion_from_celsius(celsius, "Fahrenheit"))
-                        print("Kelvin: %.2fK" % Temp_conversionObject.conversion_from_celsius(celsius, "Kelvin"))
-                        print("Rankine: %.2f°R" % Temp_conversionObject.conversion_from_celsius(celsius, "Rankine"))
-                        print("Delisle: %.2f°De" % Temp_conversionObject.conversion_from_celsius(celsius, "Delisle"))
-                        print("Newton: %.2f°N" % Temp_conversionObject.conversion_from_celsius(celsius, "Newton"))
-                        print("Reaumur: %.2f°Ré" % Temp_conversionObject.conversion_from_celsius(celsius, "Reaumur"))
-                        print("Romer: %.2f°Rø" % Temp_conversionObject.conversion_from_celsius(celsius, "Romer"))
-                except EOFError as e:
-                    print(e)
+                Temp_conversionObject = (
+                    Temp_conversion()
+                )  # Assigns the object to Temp_conversionObject
+                Temp_conversionObject.temperature = user_input_pt2_float  # Assigns the float value of user_input_pt2_float as an attribute to the object's temperature property
+                if (
+                    __name__ == "__main__"
+                ):  # Checks if the name of the input key is from this module
+                    kelvin = Temp_conversionObject.to_kelvin(choice)
+                    print("Kelvin: %.3fK" % kelvin)
+                    print(
+                        "Celsius: %.3fC"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Celsius")
+                    )
+                    print(
+                        "Fahrenheit: %.3fF"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Fahrenheit")
+                    )
+                    print(
+                        "Rankine: %.3fR"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Rankine")
+                    )
+                    print(
+                        "Delisle: %.3fDe"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Delisle")
+                    )
+                    print(
+                        "Newton: %.3fN"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Newton")
+                    )
+                    print(
+                        "Reaumur: %.3fRe"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Reaumur")
+                    )
+                    print(
+                        "Romer: %.3fRo"
+                        % Temp_conversionObject.from_kelvin(kelvin, "Romer")
+                    )
+                else:
                     deadend = True
-    except EOFError as d:
-        print(d)
-        deadend = True
+                    continue
