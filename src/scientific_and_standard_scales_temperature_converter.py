@@ -1,24 +1,19 @@
+#   Purpose and version of program
+__purpose__ = "This program converts to multiple different temperature scales using an input from any of the temperature scales."
+__version__ = "Program Version: 1.2"
+
 #   License and Author
 __author__ = "Faycal Kilali"
-__copyright__ = "Copyright (C) 2021 Faycal Kilali\n"
+__copyright__ = "Copyright (C) 2021 Faycal Kilali"
 __license__ = "GNU GENERAL PUBLIC LICENSE"
-__license_version__ = "3.0\n"
-
-#   Purpose and version of program
-purpose = "This program converts to multiple different temperature scales using an input from any of the temperature scales.\n"
-__version__ = "Program Version: 1.2\n"
-
-#   Exit method
-__exit_instructions__ = "If you wish to quit the program, input q then hit enter."
-
-def quit_program():
-    print("Quit input received, quitting program...")
-    exit()
+__license_version__ = "3.0"
 
 #   Display purpose and version, license and version of license.
-print(purpose, __version__)
-print(__copyright__, __license__, __license_version__, __exit_instructions__)
+print(__purpose__, "\n", __version__)
+print(__copyright__, "\n", __license__, __license_version__, "\n")
 
+# Importing exit implementation
+from exit_with_q_module import quit_program
 
 def DisplayError(ErrorNumber):
     if ErrorNumber == 0:
@@ -30,7 +25,6 @@ def DisplayError(ErrorNumber):
         )
     else:
         pass
-
 
 class Temp_conversion:
     def __init__(self, temperature=0):
